@@ -7,7 +7,7 @@
 # - docker
 # - kubernetes: kubeadm, kubectl, kubelet
 
-set -e # Exit immediately if a command exits with a non-zero status.
+# set -e # Exit immediately if a command exits with a non-zero status.
 
 # Logging
 sudo exec > >(tee -i /var/log/k8s_setup.log)
