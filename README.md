@@ -17,12 +17,12 @@ This script automates the setup of a Kubernetes node on Ubuntu 20.04, including 
 
 2. Make the script executable:
    ```
-   chmod +x k8s_setup.sh
+   chmod +x setup.sh
    ```
 
 3. Run the script with sudo privileges:
    ```
-   sudo ./k8s_setup.sh
+   sudo setup.sh
    ```
 
 4. Follow the prompts in the script. You will be asked to confirm before proceeding with the installation.
