@@ -15,8 +15,8 @@ exec 2>&1
 
 echo "Starting Kubernetes setup script"
 # Version Check
-if [[ $(lsb_release -rs) != "20.04" ]]; then
-    echo "This script is intended for Ubuntu 20.04. Your version is $(lsb_release -rs). Exiting."
+if [[ $(lsb_release -rs) != "22.04" ]]; then
+    echo "This script is intended for Ubuntu 22.04. Your version is $(lsb_release -rs). Exiting."
     exit 1
 fi
 
@@ -94,7 +94,7 @@ fi
 
 ### INSTALL CRI-DOCKERD
 echo -e "\nk8s setup >>> Installing cri-dockerd"
-wget -O /tmp/cri-dockerd.deb https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.15/cri-dockerd_0.3.15.3-0.ubuntu-focal_amd64.deb
+wget -O /tmp/cri-dockerd.deb https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.15/cri-dockerd_0.3.15.3-0.ubuntu-jammy_amd64.deb
 sudo dpkg -i /tmp/cri-dockerd.deb
 rm /tmp/cri-dockerd.deb
 sudo systemctl enable cri-docker.service

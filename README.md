@@ -1,10 +1,10 @@
 # Kubernetes Node Setup Script
 
-This script automates the setup of a Kubernetes node on Ubuntu 20.04, including the installation of Docker, cri-dockerd, and Kubernetes components.
+This script automates the setup of a Kubernetes node on Ubuntu 22.04, including the installation of Docker, cri-dockerd, and Kubernetes components.
 
 ## Prerequisites
 
-- A fresh Ubuntu 20.04 installation
+- A fresh Ubuntu 22.04 installation
 - Sudo privileges on the target machine
 
 ## Usage
