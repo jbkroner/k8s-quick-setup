@@ -10,8 +10,10 @@
 # set -e # Exit immediately if a command exits with a non-zero status.
 
 # Logging
-sudo exec > >(tee -i /var/log/k8s_setup.log)
-sudo exec 2>&1
+sudo mkdir -p /var/log
+sudo chmod 755 /var/log
+exec > >(tee -i /var/log/k8s_setup.log)
+exec 2>&1
 
 echo "Starting Kubernetes setup script"
 # Version Check
@@ -139,6 +141,23 @@ sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 
 echo "k8s setup >>> kubelet configured to use cri-dockerd"
+
+### CREATE AND MODIFY KUBEADM CONFIG
+echo -e "\nk8s setup >>> Creating and modifying kubeadm config"
+
+# Generate default kubeadm config
+kubeadm config print init-defaults > ~/kubeadm-config.yaml
+
+# Modify the config to use cri-dockerd
+sed -i 's|criSocket: /var/run/containerd/containerd.sock|criSocket: /var/run/cri-dockerd.sock|' ~/kubeadm-config.yaml
+
+# Add the cgroup driver configuration
+cat <<EOF >> ~/kubeadm-config.yaml
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+cgroupDriver: systemd
+EOF
 
 # Cleanup
 sudo apt-get clean
