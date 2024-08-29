@@ -10,8 +10,8 @@
 set -e # Exit immediately if a command exits with a non-zero status.
 
 # Logging
-exec > >(tee -i /var/log/k8s_setup.log)
-exec 2>&1
+sudo exec > >(tee -i /var/log/k8s_setup.log)
+sudo exec 2>&1
 
 echo "Starting Kubernetes setup script"
 # Version Check
