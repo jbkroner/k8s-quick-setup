@@ -146,18 +146,26 @@ echo "k8s setup >>> kubelet configured to use cri-dockerd"
 echo -e "\nk8s setup >>> Creating and modifying kubeadm config"
 
 # Generate default kubeadm config
-kubeadm config print init-defaults > ~/kubeadm-config.yaml
+kubeadm config print init-defaults > /tmp/kubeadm-config.yaml
 
 # Modify the config to use cri-dockerd
-sed -i 's|criSocket: /var/run/containerd/containerd.sock|criSocket: /var/run/cri-dockerd.sock|' ~/kubeadm-config.yaml
+sed -i 's|criSocket: /var/run/containerd/containerd.sock|criSocket: /var/run/cri-dockerd.sock|' /tmp/kubeadm-config.yaml
 
 # Add the cgroup driver configuration
-cat <<EOF >> ~/kubeadm-config.yaml
+cat <<EOF >> /tmp/kubeadm-config.yaml
 ---
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
 cgroupDriver: systemd
 EOF
+
+# Move the file to the user's home directory
+mv /tmp/kubeadm-config.yaml ~/kubeadm-config.yaml
+
+# Ensure the file has the correct ownership
+chown $(logname):$(logname) ~/kubeadm-config.yaml
+
+echo "kubeadm-config.yaml has been created in your home directory"
 
 # Cleanup
 sudo apt-get clean
