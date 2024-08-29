@@ -40,6 +40,9 @@ This script automates the setup of a Kubernetes node on Ubuntu 22.04, including 
 - Configures kubelet to use cri-dockerd
 
 ## Launching Nodes
+(optional) Pre-load some kubernetes images with `kubeadm config images pull`
+
+Launch essential services with `launch_service.sh`.  They may already be running.
 
 Launch the master node with `sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket=unix:///var/run/cri-dockerd.sock`
 
