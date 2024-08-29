@@ -12,7 +12,7 @@ This script automates the setup of a Kubernetes node on Ubuntu 20.04, including 
 1. Clone the repository:
    ```
    git clone https://github.com/jbkroner/k8s-quick-setup.git
-   cd your-repo-name
+   cd k8s-quick-setup
    ```
 
 2. Make the script executable:
