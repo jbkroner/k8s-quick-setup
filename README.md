@@ -41,7 +41,7 @@ This script automates the setup of a Kubernetes node on Ubuntu 22.04, including 
 
 ## Launching Nodes
 
-Launch the master node with `sudo kubeadm init --config=kubeadm-config.yaml`
+Launch the master node with `sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket=unix:///var/run/cri-dockerd.sock`
 
 Generate join keys for workers: `sudo kubeadm token create --print-join-command`
 
