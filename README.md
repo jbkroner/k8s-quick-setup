@@ -39,13 +39,19 @@ This script automates the setup of a Kubernetes node on Ubuntu 22.04, including 
 - Installs Kubernetes components (kubeadm, kubelet, kubectl)
 - Configures kubelet to use cri-dockerd
 
+## Launching Nodes
+
+Launch the master node with `sudo kubeadm init --config=kubeadm-config.yaml`
+
+Generate join keys for workers: `sudo kubeadm token create --print-join-command`
+
 ## Logs
 
 The script outputs logs to `/var/log/k8s_setup.log`. You can review this file for details about the installation process.
 
 ## Note
 
-This script is intended for setting up a Kubernetes node on a fresh Ubuntu 20.04 installation. It may not work correctly on other Ubuntu versions or if the system has been previously modified.  I'll try to add support for new versions of Ubuntu in the future. 
+This script is intended for setting up a Kubernetes node on a fresh Ubuntu 22.04 installation. It may not work correctly on other Ubuntu versions or if the system has been previously modified.  I'll try to add support for new versions of Ubuntu in the future. 
 
 ## Troubleshooting
 
